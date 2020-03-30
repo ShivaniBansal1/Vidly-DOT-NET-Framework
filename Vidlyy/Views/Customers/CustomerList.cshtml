@@ -1,35 +1,36 @@
-﻿@model Vidlyy.ViewModels.CustomerViewModel
-@*@using Vidlyy.Models*@
+﻿@model IEnumerable<Vidlyy.Models.Customer>
 @{
     ViewBag.Title = "CustomerList";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
-@{
+@*@{
     var classname = Model.Customers.Count > 0 ? "popular" : null;
-}
+}*@
 
-
-<h1 class="@classname">Customers</h1>
-<h3>Customer</h3>
+<h1 >Customers</h1>
 
 @{
-    if (Model.Customers.Count == 0)
+    if (!Model.Any())
     {
         <text>We don't have customers yet.</text>
     }
     else
     {
-        <ul>
-            @foreach (var customer in Model.Customers)
-            {
-                <li>@customer.Name</li>
-            }
-        </ul>
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Customer</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var customer in Model)
+                {
+                    <tr>
+                        <td>@Html.ActionLink(customer.Name, "Index", "Customers", new { id = customer.Id }, null)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     }
 }
-
-
-
-

@@ -44,13 +44,25 @@ namespace Vidlyy.Controllers
             //return RedirectToAction("Index", "Home", new { page = 1, sortBy = "Name" });
         }
 
+        public ViewResult Index()
+            {
+            var movies = new List<Movie>()
+                {
+                    new Movie { Id = 1, Name = "Shrek" },
+                    new Movie { Id = 2, Name = "wall-e" }
+                };
+
+            return View(movies);
+
+            }
+
         public ActionResult Edit(int Id)
         {
             return Content("Id=" + Id);
 
         }
 
-        public ActionResult Index(int? pageIndex, string sortBy) //string in c# is reference type so its already nullable
+        public ActionResult Index1(int? pageIndex, string sortBy) //string in c# is reference type so its already nullable
         {
             if (!pageIndex.HasValue)
             {

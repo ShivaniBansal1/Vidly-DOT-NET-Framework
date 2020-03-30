@@ -1,4 +1,4 @@
-﻿@model Vidlyy.ViewModels.MovieViewModel
+﻿@model IEnumerable<Vidlyy.Models.Movie>
 @*@using Vidlyy.Models*@
 
 @{
@@ -6,30 +6,40 @@
     Layout = "~/Views/Shared/_Layout.cshtml";  //layout for the view
 }
 
-@{ 
-    var classname = Model.Customers.Count > 0 ? "popular" : null ;
-}
+@*@{
+        var classname = Model.Customers.Count > 0 ? "popular" : null ;
+    }*@
 
 
-<h2 class="@classname">@Model.Movie.Name</h2>  
+<h1>Movies</h1>
 
-@{ 
-    if (Model.Customers.Count == 0)
+@{
+    if (!Model.Any())
     {
-        <text>We don't have customers yet.</text>
+        <text>We don't have movies yet.</text>
     }
     else
     {
-        <ul>
-            @foreach (var customer in Model.Customers)
-            {
-                <li>@customer.Name</li>
-            }
-        </ul>
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Movie</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var movie in Model)
+                {
+                    <tr>
+                        @*<td>@Html.ActionLink(movie.Name, "Index", "Movies", new { id = movie.Id }, null)</td>*@
+                        <td>@movie.Name</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     }
 }
 
 @*<h2>@(((Movie)ViewData["Movie"]).Name)</h2>*@
-@*<h2>@ViewBag.Movie</h2>*@  
+@*<h2>@ViewBag.Movie</h2>*@
 
 
