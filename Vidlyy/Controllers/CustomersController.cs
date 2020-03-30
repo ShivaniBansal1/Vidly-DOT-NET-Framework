@@ -11,7 +11,14 @@ namespace Vidlyy.Controllers
     public class CustomersController : Controller
     {
         // GET: Customers
-        public ViewResult Index()
+        public ActionResult Index()
+        {
+            var customers = GetCustomers();
+            return View(customers);
+
+        }
+
+        public IEnumerable<Customer> GetCustomers()
         {
             var customers = new List<Customer>()
                 {
@@ -19,8 +26,21 @@ namespace Vidlyy.Controllers
                     new Customer { Id = 2, Name = "Marry Williams" }
                 };
 
-            return View(customers);
+            return customers;
 
+        }
+
+        public ActionResult Details(int id = 0)
+        {
+            var listOfCustomers = GetCustomers();
+            
+            var customer = listOfCustomers.SingleOrDefault(item => item.Id == id);
+            if (id==0 || customer == null)
+            {
+                return HttpNotFound();
+            }
+               
+            return View(customer);
         }
     }
 }

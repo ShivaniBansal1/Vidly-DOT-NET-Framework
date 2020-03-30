@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Vidlyy.Models.Customer>
 @{
-    ViewBag.Title = "CustomerList";
+    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -27,7 +27,7 @@
                 @foreach (var customer in Model)
                 {
                     <tr>
-                        <td>@Html.ActionLink(customer.Name, "Index", "Customers", new { id = customer.Id }, null)</td>
+                        <td>@Html.ActionLink(customer.Name, "Details", "Customers", new { id = customer.Id })</td>
                     </tr>
                 }
             </tbody>

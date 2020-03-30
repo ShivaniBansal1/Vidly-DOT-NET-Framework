@@ -1,4 +1,4 @@
-﻿@model Vidlyy.ViewModels.MovieViewModel
+﻿
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,12 +10,13 @@
 
 </head>
 <body>
-    @Html.Partial("_NavBar", Model.Movie)
+    @Html.Partial("_NavBar")
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Vidly</p>
+            <p>&copy; @DateTime.Now.Year - Vidly
+            </p>
         </footer>
     </div>
 
